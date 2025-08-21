@@ -1,0 +1,61 @@
+body{
+    margin: 1px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: aqua;
+}
+
+h1{
+    font-size: 3.5rem
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+}
+
+.container button{
+    height: 150px;
+    width: 150px;
+    border-radius: 100%;
+    font-size: 4rem;
+    padding: 5px;
+    background-color: black;
+    cursor: pointer;
+    transition: ease-in;
+}
+
+.container button:hover{
+    background-color: #0000009a;
+}
+
+#score{
+    font-size: 2rem;
+}
+
+#result{
+    margin-top: 20px;
+    font-size: 2.5rem;
+    font-weight: bolder;
+}
+
+h2{
+    position: relative;
+    margin-top: 20px;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink{
+    0%{
+        color: black;
+    }
+    50%{
+        color: rgb(96, 79, 112);
+    }
+    100%{
+        color: black;
+    }
+}
