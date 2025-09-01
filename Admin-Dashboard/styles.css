@@ -1,0 +1,332 @@
+/* Sets margin and padding to zero because we're going to be wrapping things in a lot of divs */
+* {
+  margin: 0;
+  padding: 0;
+  /* global font */
+  font-family: Helvetica;
+  /* Declaring global variables & colors */
+  --darkcrimson: #840c24;
+  --primarycolor: crimson;
+  --secondarycolor: rgb(214, 211, 211);
+  --tertiarycolor: gray;
+  --lightcolor: white;
+  --accentcolor: var(--darkcrimson);
+  --boxradius: 8px;
+  --globalshadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+    /* Sets the layout to be full size */
+    height: 100vh;
+    /* Set up structure for the layout of the main sections  */
+    display: grid;
+    /* todo - get more precise values */
+    grid-template-columns: 300px 4fr;
+    grid-template-rows: 1fr 4.5fr ;
+
+}
+
+/* ----- */
+/* Everything for the header */
+/* ----- */
+
+.header {
+    padding-top: 8px;
+    background-color: white;
+    grid-area: 1 / 2 / 2 / 3;
+    /* Setting up grid for header's children */
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.36fr 0.64fr; 
+    grid-template-rows: 4fr 5fr;
+    /* shadow */
+    box-shadow: var(--globalshadow);
+}
+
+.searchbar {
+    grid-area: 1 / 1 / 2 / 3;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+}
+
+.searchbar input {
+    padding: 0 1rem;
+    margin: 0 1.5rem;
+    background-color: var(--secondarycolor);
+    height: 2rem;
+    width: 100%;
+    border: none;
+    border-radius: 24px;
+
+}
+
+.searchbar input:focus {
+    outline: none;
+}
+
+.profile {
+    grid-area: 1 / 4 / 2 / 5;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 1.25rem;
+}
+
+.greeting {
+    grid-area: 2 / 1 / 3 / 2;
+    display: flex;
+    align-items: center;
+    padding-left: 32px;
+    /* target first and second child seperately for the text */
+}
+
+.greeting > img {
+    padding-right: 1.5rem;
+}
+
+.greeting-text > p:first-child {
+    font-size: 1.125rem;
+}
+
+.greeting-text > p:last-child {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.action-buttons {
+    grid-area: 2 / 3 / 3 / 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.action-buttons > button {
+    height: 3rem;
+    width: 6rem;
+    border-radius: 36px;
+    background-color: var(--primarycolor);
+    color: var(--lightcolor);
+    font-weight: bold;
+    font-size: 1.125rem;
+    border-style: none;
+}
+
+/* ----- */
+/* Everything for the sidebar */
+/* ----- */
+
+.sidebar {
+    /* Decorations for sidebar*/
+    color: white;
+    /* text-shadow: 1px 1px 0px var(--darkcrimson); */
+    background-color: crimson;
+    /* Initial placement of the sidebar on the left side of the grid */
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    /* Setting up a grid underneath */
+    display: grid;
+    grid-template-rows: 64px 200px 120px;
+    gap: 48px;
+    /* Align and place items better */
+    padding-top: 1rem;
+}
+
+.sidebar a {
+    /* Text decorations */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.125rem;
+}
+
+.sidebar a:hover {
+    color: whitesmoke;
+    text-shadow: 1px 1px 0 var(--darkcrimson);
+}
+
+.sidebar-group {
+    /* Layout of items with the icons next to them */
+    display: grid;
+    grid-template-columns: 52px max-content;
+    /* Prettying up & aligning things */
+    align-items: center;
+    padding-left: 8px;
+}
+
+.sidebar-group .icon {
+    /* Align the images to the center of the grid track */
+    justify-self: center;
+    /* Change images from black to white */
+    filter: invert(100%);
+}
+
+/* ----- */
+/* Everything for the main section */
+/* ----- */
+
+.main {
+    /* setting up variable for smallest a project box can be */
+    --minbox: 250px;
+    grid-area: 2 / 2 / 3 / 3;
+    background-color: var(--secondarycolor);
+    /* Setting up for children - content and side */
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    padding: 24px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2) inset;
+}
+
+/* Everything for the actual main content section */
+
+.main-content {
+    min-width: 300px;
+    padding-right: 24px;
+    /* Setting up for the title and grid of items */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: auto;
+}
+
+.main-content-projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--minbox), 300px));
+    gap: 32px;
+    
+}
+
+.project {
+    position: relative;
+    /* sizing */
+    height: 152px;
+    min-width: var(--minbox);
+    max-width: 300px;
+    /* decorations */
+    background-color: var(--lightcolor);
+    box-shadow: var(--globalshadow);
+    border-radius: var(--boxradius);
+    /* layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px 28px;
+}
+
+.project a {
+    color: black;
+    text-decoration: none;
+}
+
+.project-text h4 {
+    font-size: 1rem;
+}
+
+.project-text p {
+    padding-top: 8px;
+    font-size: 0.875rem;
+}
+
+.project-buttons {
+    align-self: flex-end;
+    display: flex;
+    gap: 16px;
+}
+
+/* creating the silly little stripe */
+
+.project::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(1 * 0px);
+    height: 100%;
+    width: 8px;
+    background-color: var(--accentcolor);
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+}
+
+
+
+
+
+
+
+
+
+
+/* Everything for the side section on the right */
+
+.main-side {
+    /* Setting up the structure to allow for the heading and blocks of content */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* announcements section */
+
+.side-announcements {
+    /* Decorations for the announcement box */
+    box-shadow: var(--globalshadow);
+    background-color: var(--lightcolor);
+    border-radius: var(--boxradius);
+    padding: 28px 32px;
+    /* setting up content within the announcements box */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.side-announcements h4 {
+    font-size: 0.8125rem;
+}
+
+.side-announcements p {
+    padding-top: 0.3125rem;
+    font-size: 0.75rem;
+    color: var(--tertiarycolor);
+}
+
+.line {
+    background-color: var(--secondarycolor);
+    width: 60%;
+    height: 2px;
+}
+
+/*  Trending section */
+
+.trending {
+    /* Decorations */
+    box-shadow: var(--globalshadow);
+    background-color: var(--lightcolor);
+    border-radius: var(--boxradius);
+    /* Arrangement */
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 16px
+}
+
+.trending-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Text size formatting */
+
+.trending h5 {
+    font-size: 0.8125rem;
+}
+
+.trending p {
+    font-size: 0.75rem;
+    /* spacing between heading and content */
+    padding-top: 4px;
+    color: var(--tertiarycolor);
+}
+
